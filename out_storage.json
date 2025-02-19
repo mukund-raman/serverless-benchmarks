@@ -1,0 +1,10 @@
+{
+  "address": "172.17.0.3:9000",
+  "mapped_port": 9011,
+  "access_key": "ixCKO5iCJ_81ok2eUsPnA_k0qHYP2PSkmKuh6tubf-k",
+  "secret_key": "0f8bfb96eb42f889ad11fa1c91b95fde268e2e9d00167f0f6f312639c74e4e7d",
+  "instance_id": "c2558379de84d076807dbb98f586085b9d7200953e737ec908eb427063a2015b",
+  "output_buckets": [],
+  "input_buckets": [],
+  "type": "minio"
+}
