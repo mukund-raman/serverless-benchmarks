@@ -1,4 +1,3 @@
-
 SeBS has three basic commands: `benchmark`, `experiment`, and `local`.
 For each command you can pass `--verbose` flag to increase the verbosity of the output.
 By default, all scripts will create a cache in the directory `cache` to store code with
@@ -167,4 +166,16 @@ we support memory measurements. To enable this, pass the following flag to `./se
 The value specifies the time between two consecutive measurements. Measurements will be aggregated
 and written to a file when calling `./sebs.py local stop <file>`. By default, the data is written
 to `memory_stats.json`.
+
+### Running Benchmarks and Collecting Trace Data
+
+To run a benchmark and collect system trace data, use the `sebs_runner.sh` script. Ensure that the virtual environment is activated before running the script.
+
+Example usage:
+
+```
+./sebs_runner.sh
+```
+
+This script will run the specified benchmarks and collect trace data using `profiler.bt`, saving the logs to the specified log directory.
 

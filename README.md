@@ -1,4 +1,3 @@
-
 [![CircleCI](https://circleci.com/gh/spcl/serverless-benchmarks.svg?style=shield)](https://circleci.com/gh/spcl/serverless-benchmarks)
 ![Release](https://img.shields.io/github/v/release/spcl/serverless-benchmarks)
 ![License](https://img.shields.io/github/license/spcl/serverless-benchmarks)
@@ -98,7 +97,7 @@ To install the benchmarks with a support for all platforms, use:
 ```
 
 It will create a virtual environment in `python-venv`, and install necessary Python
-dependencies and third-party dependencies. To use SeBS, you must first active the new Python
+dependencies and third-party dependencies. To use SeBS, you must first activate the new Python
 virtual environment:
 
 ```
