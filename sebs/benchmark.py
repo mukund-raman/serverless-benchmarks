@@ -430,6 +430,7 @@ class Benchmark(LoggingBase):
                                 path=os.path.abspath(output_dir)
                             )
                         )
+                        print("Right before, repo name:", repo_name, "; image_name:", image_name)
                         stdout = self._docker_client.containers.run(
                             "{}:{}".format(repo_name, image_name),
                             volumes=volumes,
@@ -441,10 +442,12 @@ class Benchmark(LoggingBase):
                                 "PLATFORM": self._deployment_name.upper(),
                                 "TARGET_ARCHITECTURE": self._experiment_config._architecture,
                             },
+                            platform="linux/amd64",
                             remove=True,
                             stdout=True,
                             stderr=True,
                         )
+                        print("Right after")
                     # Hack to enable builds on platforms where Docker mounted volumes
                     # are not supported. Example: CircleCI docker environment
                     else:
@@ -457,6 +460,7 @@ class Benchmark(LoggingBase):
                             detach=True,
                             tty=True,
                             command="/bin/bash",
+                            platform="linux/amd64",
                         )
                         # copy application files
                         import tarfile
