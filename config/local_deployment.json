@@ -66,11 +66,11 @@
     },
     "local": {
       "storage": {
-        "address": "172.17.0.3:9000",
+        "address": "172.17.0.2:9000",
         "mapped_port": 9011,
-        "access_key": "coQNC273x5LKpcSyZSZ6qodjplpko6kDb14DD4SPqIo",
-        "secret_key": "1289962fd06c12f2278ddc2595b66c700327f42dfe1744218da0a627c328e41e",
-        "instance_id": "f91f470767a4",
+        "access_key": "QqfIKcyKb4Xywsfz2FZRAX8obETymNS0m-cdZ8U6Ny4",
+        "secret_key": "057b5e7517e6f5cd5c293bd88e6a3208d72604ea4a8705ad3f6ac1d04fb83242",
+        "instance_id": "5921023d704ac75a7b5bf3127370878d37eca71cb21d246e8a5ec758f3804188",
         "output_buckets": [],
         "input_buckets": [],
         "type": "minio"

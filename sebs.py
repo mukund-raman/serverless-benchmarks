@@ -508,8 +508,20 @@ def start(
 @local.command()
 @click.argument("input-json", type=str)
 @click.argument("output-json", type=str, default="memory_stats.json")
-# @simplified_common_params
-def stop(input_json, output_json, **kwargs):
+@click.option("--config", required=True, type=click.Path(readable=True), help="Location of experiment config.")
+@click.option("--output-dir", default=os.path.curdir, help="Output directory for results.")
+@click.option("--output-file", default="out.log", help="Output filename for logging.")
+@click.option("--cache", default=os.path.join(os.path.curdir, "cache"), help="Location of experiments cache.")
+@click.option("--verbose/--no-verbose", default=False, help="Verbose output.")
+@click.option("--preserve-out/--no-preserve-out", default=True, help="Preserve current results in output directory.")
+@click.option("--language", default=None, type=click.Choice(["python", "nodejs"]), help="Benchmark language")
+@click.option("--language-version", default=None, type=str, help="Benchmark language version")
+@click.option("--architecture", default="x64", type=click.Choice(["x64", "arm64"]), help="Target architecture")
+@click.option("--container-deployment/--no-container-deployment", default=False, help="Deploy functions as containers (AWS only). When enabled, functions are packaged as container images and pushed to Amazon ECR.")
+@click.option("--update-code/--no-update-code", default=False, help="Update function code in cache and cloud deployment.")
+@click.option("--update-storage/--no-update-storage", default=False, help="Update benchmark storage files in cloud deployment.")
+@click.option("--deployment", default=None, type=click.Choice(["azure", "aws", "gcp", "local", "openwhisk"]), help="Cloud deployment to use.")
+def stop(input_json, output_json, config, output_dir, output_file, cache, verbose, preserve_out, language, language_version, architecture, container_deployment, update_code, update_storage, deployment, **kwargs):
     """
     Stop function and storage containers.
     """
@@ -518,8 +530,20 @@ def stop(input_json, output_json, **kwargs):
 
     logging.info(f"Stopping deployment from {os.path.abspath(input_json)}")
     (config, output_dir, logging_filename, sebs_client, deployment_client) = parse_common_params(
-        update_code=False, update_storage=False,
-        deployment="local", **kwargs
+        config=config,
+        output_dir=output_dir,
+        output_file=output_file,
+        cache=cache,
+        verbose=verbose,
+        preserve_out=preserve_out,
+        language=language,
+        language_version=language_version,
+        architecture=architecture,
+        container_deployment=container_deployment,
+        update_code=update_code,
+        update_storage=update_storage,
+        deployment=deployment,
+        **kwargs
     )
 
     deployment_client.res
