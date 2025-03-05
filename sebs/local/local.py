@@ -244,7 +244,7 @@ class Local(System):
             proc = subprocess.Popen(
                 [
                     "python3",
-                    "./sebs/local/measureMem.py",
+                    "../serverless-benchmarks/sebs/local/measureMem.py",
                     "--container-id",
                     container.id,
                     "--measure-interval",

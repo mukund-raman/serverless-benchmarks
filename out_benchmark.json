@@ -1,44 +1,44 @@
 {
   "functions": [
     {
-      "benchmark": "311.compression",
+      "benchmark": "110.dynamic-html",
       "config": {
         "architecture": "x64",
-        "memory": 256,
+        "memory": 128,
         "runtime": {
           "language": "python",
           "version": "3.8"
         },
-        "timeout": 60
+        "timeout": 10
       },
-      "hash": "edce359c76c9c3eadf1cfcef929a4154",
-      "instance_id": "347911816a233416e8b3c7ab40151a1fff9e9fa11b7a3f1b47dc24031382117b",
-      "name": "311.compression-python-3.8",
+      "hash": "922bc815d63cae3d8ad4c61dc27ecaed",
+      "instance_id": "02d191db652c004f8ea780242f5796655504a7b3881ce9b38f1131ad2ff12159",
+      "name": "110.dynamic-html-python-3.8",
       "port": 9000,
       "triggers": [],
-      "url": "172.17.0.3:9000"
+      "url": "172.17.0.4:9000"
     }
   ],
   "inputs": [
     {
-      "bucket": {
-        "bucket": "sebs-benchmarks-local-d59cb00c",
-        "input": "311.compression-0-input",
-        "output": "311.compression-0-output"
-      },
-      "object": {
-        "key": "acmart-master"
-      }
+      "random_len": 10,
+      "username": "testname"
     }
   ],
+  "memory_measurements": {
+    "file": "/tmp/tmp5_fpwgk9",
+    "pids": [
+      120162
+    ]
+  },
   "storage": {
-    "access_key": "zyRw6hFNh5m2PdYFflJBzTATSzbCHe74DkRC-sy1qxI",
+    "access_key": "ZCXZVnfr2DLlvrH4EAPSIddcs9ijhHIAjg01nZZ6GMo",
     "address": "172.17.0.2:9000",
     "input_buckets": [],
-    "instance_id": "79129a2244e8c5e7e0ac01dfdc1cdea99ed7e7ee38d0a2ba7bf670f593ae243f",
+    "instance_id": "3802fc96f73ce2f2e9a2bdf8e0b208d2e7783d1377861f75c11acfed6b27dff6",
     "mapped_port": 9011,
     "output_buckets": [],
-    "secret_key": "a3eeabe7ee888330aa2a63b4691d163f5e068e3ddb69054e66e292e9cf67bcaf",
+    "secret_key": "4999d463e9c75acb0d198263d9ca65692b852533338b333200a0aff5d3ed3a15",
     "type": "minio"
   }
 }
