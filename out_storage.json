@@ -1,9 +1,9 @@
 {
   "address": "172.17.0.2:9000",
   "mapped_port": 9011,
-  "access_key": "ZCXZVnfr2DLlvrH4EAPSIddcs9ijhHIAjg01nZZ6GMo",
-  "secret_key": "4999d463e9c75acb0d198263d9ca65692b852533338b333200a0aff5d3ed3a15",
-  "instance_id": "3802fc96f73ce2f2e9a2bdf8e0b208d2e7783d1377861f75c11acfed6b27dff6",
+  "access_key": "y2axW-OEmoKiuyAdm7D69i423rAEYi27mJRaWfT4Oxk",
+  "secret_key": "57865dc61ed9c12a10412354adde262b32db5cdc068e771c4ec323ba376ef072",
+  "instance_id": "0b02a8f901a683eb2de9b29f8098d49089470032d2452bc5dfe59f05856d99e8",
   "output_buckets": [],
   "input_buckets": [],
   "type": "minio"

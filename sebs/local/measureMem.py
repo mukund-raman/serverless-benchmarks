@@ -10,22 +10,42 @@ import subprocess
 import time
 import argparse
 
+def is_container_running(container_id: str) -> bool:
+    cmd = f"docker inspect -f '{{{{.State.Running}}}}' {container_id}"
+    p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+    output = p.communicate()[0].decode().strip()
+    return output == "true"
 
 def measure(container_id: str, measure_interval: int, measurement_file: str) -> None:
-
     f = open(measurement_file, "a")
 
     while True:
+        if not is_container_running(container_id):
+            print(f"Container {container_id} is no longer running. Exiting measurement.")
+            break
+        
         time_start = time.perf_counter_ns()
         longId = "docker-" + container_id + ".scope"
         try:
             cmd = f"cat /sys/fs/cgroup/system.slice/{longId}/memory.current"
             p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
-            f.write(f"{container_id} {int(p.communicate()[0].decode())}\n")
-        except:  # noqa
-            cmd = f"cat /sys/fs/cgroup/docker/{container_id}/memory.current"
-            p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
-            f.write(f"{container_id} {int(p.communicate()[0].decode())}\n")
+            output = p.communicate()[0].decode().strip()
+            if output:
+                f.write(f"{container_id} {int(output)}\n")
+            else:
+                print(f"Empty memory usage value for container {container_id}")
+        except Exception as e:  # noqa
+            print(f"Exception: {e}")
+            try:
+                cmd = f"cat /sys/fs/cgroup/docker/{container_id}/memory.current"
+                p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+                output = p.communicate()[0].decode().strip()
+                if output:
+                    f.write(f"{container_id} {int(output)}\n")
+                else:
+                    print(f"Empty memory usage value for container {container_id}")
+            except Exception as e:
+                print(f"Exception: {e}")
 
         iter_duration = time.perf_counter_ns() - time_start
         if iter_duration / 1e6 > measure_interval and measure_interval > 0:

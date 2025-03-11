@@ -1,44 +1,50 @@
 {
   "functions": [
     {
-      "benchmark": "110.dynamic-html",
+      "benchmark": "311.compression",
       "config": {
         "architecture": "x64",
-        "memory": 128,
+        "memory": 256,
         "runtime": {
           "language": "python",
           "version": "3.8"
         },
-        "timeout": 10
+        "timeout": 60
       },
-      "hash": "922bc815d63cae3d8ad4c61dc27ecaed",
-      "instance_id": "02d191db652c004f8ea780242f5796655504a7b3881ce9b38f1131ad2ff12159",
-      "name": "110.dynamic-html-python-3.8",
+      "hash": "5d9b9cf234f5a6d21312adfa5b9ca5df",
+      "instance_id": "b048c73e1596ae1ec586640bd35cb6b0f3d2d351dbbc42f34777de5eb1779624",
+      "name": "311.compression-python-3.8",
       "port": 9000,
       "triggers": [],
-      "url": "172.17.0.4:9000"
+      "url": "172.17.0.3:9000"
     }
   ],
   "inputs": [
     {
-      "random_len": 10,
-      "username": "testname"
+      "bucket": {
+        "bucket": "sebs-benchmarks-local-866d513a",
+        "input": "311.compression-0-input",
+        "output": "311.compression-0-output"
+      },
+      "object": {
+        "key": "README.md"
+      }
     }
   ],
   "memory_measurements": {
-    "file": "/tmp/tmp5_fpwgk9",
+    "file": "/tmp/tmpx54vctac",
     "pids": [
-      120162
+      186168
     ]
   },
   "storage": {
-    "access_key": "ZCXZVnfr2DLlvrH4EAPSIddcs9ijhHIAjg01nZZ6GMo",
+    "access_key": "y2axW-OEmoKiuyAdm7D69i423rAEYi27mJRaWfT4Oxk",
     "address": "172.17.0.2:9000",
     "input_buckets": [],
-    "instance_id": "3802fc96f73ce2f2e9a2bdf8e0b208d2e7783d1377861f75c11acfed6b27dff6",
+    "instance_id": "0b02a8f901a683eb2de9b29f8098d49089470032d2452bc5dfe59f05856d99e8",
     "mapped_port": 9011,
     "output_buckets": [],
-    "secret_key": "4999d463e9c75acb0d198263d9ca65692b852533338b333200a0aff5d3ed3a15",
+    "secret_key": "57865dc61ed9c12a10412354adde262b32db5cdc068e771c4ec323ba376ef072",
     "type": "minio"
   }
 }
