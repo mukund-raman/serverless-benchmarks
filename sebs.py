@@ -436,6 +436,8 @@ def local():
 @click.argument("output", type=str)
 @click.option("--deployments", default=1, type=int, help="Number of deployed containers.")
 @click.option("--storage-configuration", type=str, help="JSON configuration of deployed storage.")
+@click.option("--docker-memory", default=None, type=str, help="Docker memory limit (e.g., '12M').")
+@click.option("--docker-cpu", default=None, type=float, help="Docker CPU limit (e.g., 0.5).")
 @click.option(
     "--measure-interval",
     type=int,
@@ -493,7 +495,10 @@ def start(
 
     for i in range(deployments):
         func = deployment_client.get_function(
-            benchmark_obj, deployment_client.default_function_name(benchmark_obj)
+            benchmark_obj,
+            deployment_client.default_function_name(benchmark_obj),
+            docker_memory=kwargs.get("docker_memory"),
+            docker_cpu=kwargs.get("docker_cpu")
         )
         result.add_function(func)
 

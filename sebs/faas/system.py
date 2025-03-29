@@ -251,7 +251,13 @@ class System(ABC, LoggingBase):
 
     """
 
-    def get_function(self, code_package: Benchmark, func_name: Optional[str] = None) -> Function:
+    def get_function(
+        self,
+        code_package: Benchmark,
+        func_name: Optional[str] = None,
+        docker_memory: Optional[str] = None, # new parameter
+        docker_cpu: Optional[float] = None  # new parameter
+    ) -> Function:
 
         if code_package.language_version not in self.system_config.supported_language_versions(
             self.name(), code_package.language_name, code_package.architecture
@@ -284,7 +290,10 @@ class System(ABC, LoggingBase):
             )
             self.logging.info("Creating new function! Reason: " + msg)
             function = self.create_function(
-                code_package, func_name, container_deployment, container_uri
+                code_package, func_name,
+                container_deployment, container_uri,
+                docker_memory=docker_memory,
+                docker_cpu=docker_cpu
             )
             self.cache_client.add_function(
                 deployment_name=self.name(),

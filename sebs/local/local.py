@@ -160,6 +160,8 @@ class Local(System):
         func_name: str,
         container_deployment: bool,
         container_uri: str,
+        docker_memory: Optional[str] = None, # new parameter
+        docker_cpu: Optional[float] = None  # new parameter
     ) -> "LocalFunction":
 
         if container_deployment:
@@ -203,6 +205,13 @@ class Local(System):
             "detach": True,
             # "tty": True,
         }
+        
+        # Propagate Docker resource limits if provided
+        if docker_memory is not None:
+            container_kwargs["mem_limit"] = f"{docker_memory}M"
+            container_kwargs["memory-swap"] = "'10G'"
+        if docker_cpu is not None:
+            container_kwargs["cpus"] = docker_cpu
 
         # If SeBS is running on non-linux platforms,
         # container port must be mapped to host port to make it reachable
