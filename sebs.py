@@ -471,6 +471,10 @@ def start(
     Start a given number of function instances and a storage instance.
     """
 
+    # Remove docker parameter options so they don't interfere with parse_common_params
+    docker_memory = kwargs.pop("docker_memory", None)
+    docker_cpu = kwargs.pop("docker_cpu", None)
+    
     (config, output_dir, logging_filename, sebs_client, deployment_client) = parse_common_params(
         update_code=False, update_storage=False,
         deployment="local", storage_configuration=storage_configuration,
@@ -497,8 +501,8 @@ def start(
         func = deployment_client.get_function(
             benchmark_obj,
             deployment_client.default_function_name(benchmark_obj),
-            docker_memory=kwargs.get("docker_memory"),
-            docker_cpu=kwargs.get("docker_cpu")
+            docker_memory=docker_memory,
+            docker_cpu=docker_cpu
         )
         result.add_function(func)
 

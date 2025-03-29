@@ -208,10 +208,12 @@ class Local(System):
         
         # Propagate Docker resource limits if provided
         if docker_memory is not None:
-            container_kwargs["mem_limit"] = f"{docker_memory}M"
+            container_kwargs["memory"] = f"{docker_memory}M"
             container_kwargs["memory-swap"] = "'10G'"
         if docker_cpu is not None:
-            container_kwargs["cpus"] = docker_cpu
+            cpu_period = 100000
+            container_kwargs["cpu_period"] = cpu_period
+            container_kwargs["cpu_quota"] = int(docker_cpu * cpu_period)
 
         # If SeBS is running on non-linux platforms,
         # container port must be mapped to host port to make it reachable
