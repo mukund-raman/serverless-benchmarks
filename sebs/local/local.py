@@ -208,8 +208,8 @@ class Local(System):
         
         # Propagate Docker resource limits if provided
         if docker_memory is not None:
-            container_kwargs["memory"] = f"{docker_memory}M"
-            container_kwargs["memory-swap"] = "'10G'"
+            container_kwargs["mem_limit"] = f"{docker_memory}M"
+            container_kwargs["memswap_limit"] = "10g"
         if docker_cpu is not None:
             cpu_period = 100000
             container_kwargs["cpu_period"] = cpu_period
